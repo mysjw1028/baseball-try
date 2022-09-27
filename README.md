@@ -1,5 +1,8 @@
 # BaseBall 프로그램
 
+### DB 글자가 깨질경우 
+alter table 테이블명 convert to character set utf8;
+를 넣어준다.
 ### 테이블 생성
 ```sql
 create table stadium(
