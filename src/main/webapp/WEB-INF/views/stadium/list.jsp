@@ -8,6 +8,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
+				<th>번호</th>
 				<th>경기장 이름</th>
 				<th>개장일</th>
 				<th>삭제</th>
