@@ -17,6 +17,10 @@ $("#btnInsert").click(()=>{
 	insert();
 });
 
+
+
+
+
 function insert(){
 	let data = {
 			name:$("#name").val()
@@ -28,13 +32,14 @@ function insert(){
 		headers: { 
 			"Content-Type": "application/json; charset=utf-8"
 		}
-	}).done(res=>{
-			if(res.code ==1){//성공
-				location.herf = "/stadium";
+	}).done((res)=>{
+			if(res.code == 1){//성공
+				location.href = "/stadium";
 			}else{//실패
 				alert("경기장등록에 실패하였습니다.");
 			}
 	});
+	
 	
 }
 

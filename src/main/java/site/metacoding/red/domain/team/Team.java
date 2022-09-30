@@ -10,10 +10,12 @@ import lombok.Setter;
 public class Team {
 	private Integer id;
 	private String name;
-	private Integer StadiumId;
+	private Integer stadiumId;
 	private Timestamp createdAt;
 	
-	//엔티티가 아닌 필드
-	private Integer no ;
+	// 엔티티가 아닌 필드
+	private Integer no;
 	private String stadiumName;
+	private String enName;
+	
 }
