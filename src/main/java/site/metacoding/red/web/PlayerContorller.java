@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,31 +29,26 @@ public class PlayerContorller {
 
 	@GetMapping("/test/player/position")
 	public @ResponseBody PlayerPositionRespDto positionTest() {
-		System.out.println("===========================");
-		System.out.println("포지션별 팀찾기");
-		System.out.println("===========================");
-
 		return playerService.포지션별팀찾기();
 	}
+
 
 	@GetMapping("/player/position")
 	public String position(Model model) {
 		PlayerPositionRespDto playerPositionRespDto = playerService.포지션별팀찾기();
-		System.out.println("===========================");
-		System.out.println("포지션별 팀찾기222");
-		System.out.println("===========================");
-
 		model.addAttribute("playerPositionRespDto", playerPositionRespDto);
 		return "player/positionList";
+	}
+
+	@DeleteMapping("/player/{id}")
+	public @ResponseBody CMRespDto<?> delete(@PathVariable Integer id) {
+		playerService.선수삭제(id);
+		return new CMRespDto<>(1, "선수삭제성공", null);
 	}
 
 	@GetMapping("/player")
 	public String list(Model model) {
 		List<Player> playerList = playerService.목록보기();
-		System.out.println("===========================");
-		System.out.println("선수목록보기");
-		System.out.println("===========================");
-
 		model.addAttribute("playerList", playerList);
 		return "player/list";
 	}
@@ -59,10 +56,6 @@ public class PlayerContorller {
 	@GetMapping("/playerForm")
 	public String playerForm(Model model) {
 		List<Team> teamList = teamService.목록보기();
-		System.out.println("===========================");
-		System.out.println("선수등록");
-		System.out.println("===========================");
-
 		model.addAttribute("teamList", teamList);
 		return "player/saveForm";
 	}
@@ -70,10 +63,6 @@ public class PlayerContorller {
 	@PostMapping("/player")
 	public @ResponseBody CMRespDto<?> insert(@RequestBody PlayerInsertReqDto playerInsertReqDto) {
 		playerService.선수등록(playerInsertReqDto);
-		System.out.println("===========================");
-		System.out.println("선수등록");
-		System.out.println("===========================");
-
 		return new CMRespDto<>(1, "선수등록성공", null);
 	}
 
