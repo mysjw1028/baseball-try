@@ -43,8 +43,8 @@
 	</update>
 
 
-	<insert id="deleteById">
-	</insert>
+	<delete id="deleteById">
+	</delete>
 
 
 </mapper>
