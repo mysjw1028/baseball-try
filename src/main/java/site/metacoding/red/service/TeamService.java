@@ -15,6 +15,10 @@ import site.metacoding.red.web.dto.team.TeamInsertReqDto;
 public class TeamService {
 
 	private final TeamDao teamDao;
+	
+	public void 팀삭제(Integer id) {
+		teamDao.deleteById(id);
+	}
 
 	public List<Team> 목록보기() {
 		return teamDao.findAll();
