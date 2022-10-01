@@ -9,16 +9,24 @@
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th>칼럼1</th>
-				<th>칼럼2</th>
+				<th>팀 이름</th>
+				<th>선수이름</th>
+				<th>포지션</th>
+				<th>등록일</th>
+				<th>삭제</th>
 			</tr>
 		</thead>
 		<tbody>
+			<c:forEach var="player" items="${playerList}">
 				<tr>
-					<td>1</td>
-					<td>내용1</td>
-					<td>내용2</td>
+					<td>${player.no}</td>
+					<td>${player.teamName}</td>
+					<td>${player.name}</td>
+					<td>${player.position}</td>
+					<td>${player.createdAt}</td>
+					<td><button class="btn btn-danger">삭제</button></td>
 				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 
