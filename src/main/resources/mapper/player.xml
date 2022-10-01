@@ -5,16 +5,19 @@
 <mapper namespace="site.metacoding.red.domain.player.PlayerDao">
 
 	<insert id="insert">
-
+		INSERT INTO player(name,position, team_id, is_outer, created_at)
+		VALUES(#{name},#{position},#{teamId},0,NOW());
 	</insert>
 
 	<select id="findAll"
 		resultType="site.metacoding.red.domain.player.Player">
-		SELECT p.id, row_number() over(ORDER BY p.id asc) as NO, t.name AS
+		SELECT p.id, row_number() over(ORDER BY p.id asc) as NO,
+		t.name AS
 		team_name, p.position,
 		p.name, p.created_at
 		FROM player p
-		INNER JOIN team t
+		INNER
+		JOIN team t
 		ON p.team_id = t.id;
 	</select>
 

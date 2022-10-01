@@ -17,6 +17,7 @@ import site.metacoding.red.service.PlayerService;
 import site.metacoding.red.service.StadiumService;
 import site.metacoding.red.service.TeamService;
 import site.metacoding.red.web.dto.CMRespDto;
+import site.metacoding.red.web.dto.player.PlayerInsertReqDto;
 import site.metacoding.red.web.dto.team.TeamInsertReqDto;
 
 @RequiredArgsConstructor
@@ -24,7 +25,8 @@ import site.metacoding.red.web.dto.team.TeamInsertReqDto;
 public class PlayerContorller {
 
 	private final PlayerService playerService;
-
+	private final TeamService teamService;
+	
 	@GetMapping("/player")
 	public String list(Model model) {
 		List<Player> playerList = playerService.목록보기();
@@ -34,11 +36,14 @@ public class PlayerContorller {
 
 	@GetMapping("/playerForm")
 	public String playerForm(Model model) {
+		List<Team>teamList = teamService.목록보기();
+		model.addAttribute("teamList",teamList);
 		return "player/saveForm";
 	}
 
 	@PostMapping("/player")
-	public @ResponseBody CMRespDto<?> insert() {
+	public @ResponseBody CMRespDto<?> insert(@RequestBody PlayerInsertReqDto playerInsertReqDto ) {
+		playerService.선수등록(playerInsertReqDto);
 		return new CMRespDto<>(1, "선수등록성공", null);
 	}
 

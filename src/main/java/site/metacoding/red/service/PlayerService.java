@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.red.domain.player.Player;
 import site.metacoding.red.domain.player.PlayerDao;
-import site.metacoding.red.domain.team.Team;
-import site.metacoding.red.domain.team.TeamDao;
-import site.metacoding.red.web.dto.team.TeamInsertReqDto;
+import site.metacoding.red.web.dto.player.PlayerInsertReqDto;
 
 @RequiredArgsConstructor
 @Service
@@ -21,5 +19,8 @@ public class PlayerService {
 		return playerDao.findAll();
 	}
 
+	public void 선수등록(PlayerInsertReqDto playerInsertReqDto) {
+		playerDao.insert(playerInsertReqDto.toEntity());
+	}
 
 }
